@@ -1,0 +1,42 @@
+name: Deploy EFMW Humanoid 3D Testbed
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: efmw-humanoid-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the static site
+        uses: actions/checkout@v4
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Verify static entry point and source files
+        run: |
+          test -f index.html
+          test -f SPEC.md
+          test -f assets/sim-core.mjs
+          test -f assets/scene3d.mjs
+          test -f assets/app.mjs
+          test -f research/config/assembly_graph.json
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

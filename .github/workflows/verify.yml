@@ -1,0 +1,43 @@
+name: Humanoid Testbed Verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    name: Source integrity, deterministic simulator and offline controls
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify browser JavaScript syntax
+        run: |
+          node --check assets/sim-core.mjs
+          node --check assets/scene3d.mjs
+          node --check assets/app.mjs
+      - name: Verify original full specification unchanged in two copies
+        run: cmp SPEC.md research/SPEC.md
+      - name: Execute deterministic browser-core and source integrity tests
+        run: node --test tests/test_sim_core.mjs
+      - name: Verify preserved Python robotics reference
+        run: |
+          cd research
+          python -m unittest discover -s tests -v
+      - name: Replay original source demonstrations
+        run: |
+          cd research
+          python examples/simulate_offline.py
+          python examples/two_link_offline.py
+      - name: Report evidence boundary
+        run: echo "PASS is a bounded software verification result; no physical robot or EFMW-specific advantage is established."

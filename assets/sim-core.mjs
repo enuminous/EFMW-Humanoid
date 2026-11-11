@@ -202,7 +202,7 @@ export class HumanoidSimulator{
   setAmplitude(x){if(!Number.isFinite(x))throw Error("Invalid amplitude");this.amplitude=clamp(x,0,1.25);}
   setJointTarget(name,angle){
     if(!JOINT_LIMITS[name]||!Number.isFinite(angle))throw Error("Unknown joint or invalid target");
-    this.setScenario("manual");
+    if(this.scenario!=="manual")this.setScenario("manual");
     this.manualTargets[name]=clamp(angle,...JOINT_LIMITS[name]);
   }
   step(dt=1/60){

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#08121c"/>
+<meta name="description" content="EFMW Humanoid: a research-first 32-joint 3D robot simulation, fault-injection and evidence-gated assembly testbed. Simulation only, no real hardware control."/>
+<title>EFMW Humanoid · 3D Robotics Research Testbed</title>
+<link rel="stylesheet" href="./assets/site.css"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a1824'/%3E%3Ctext x='32' y='44' font-family='sans-serif' text-anchor='middle' font-size='32' fill='%23c8fa8c'%3EH%3C/text%3E%3C/svg%3E"/>
+<script type="importmap">
+{"imports":{
+"three":"https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+"three/addons/":"https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<a class="skip" href="#testbed">Skip to interactive robot simulation</a>
+<div class="page-shell">
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="EFMW Humanoid top">
+      <span class="brand-logo" aria-hidden="true"><span class="brand-inner">H</span></span>
+      <span class="brand-words"><strong>EFMW <em>HUMANOID</em></strong><small>MONOLITHIC / RESEARCH LAB 001</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="#testbed">3D Testbed</a><a href="#research">Research</a><a href="#assembly">Assembly</a><a href="#specification">Full Spec</a>
+    </nav>
+    <a class="head-link" href="https://github.com/enuminous/EFMW-Humanoid" target="_blank" rel="noopener noreferrer">GITHUB SOURCE <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> OPEN ENGINEERING TESTBED <span class="tiny-divider">/</span> EHP-SYS-001 · V0.1</div>
+        <h1 id="hero-title">A body for the <br><em>recursive question.</em></h1>
+        <p>Articulated humanoid robotics, conventional control, synthetic sensing, and bounded EFMW-inspired monitoring. An interactive research bench where assumptions are visible and failures are allowed.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#testbed">ENTER THE 3D LAB <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-outline" href="./SPEC.md">READ THE FULL SPEC <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <div class="meta-item"><strong>32</strong><span>NAMED ACTUATORS</span></div>
+        <div class="meta-item"><strong>09</strong><span>ASSEMBLY GATES</span></div>
+        <div class="meta-item"><strong>35</strong><span>REFERENCE UNIT TESTS</span></div>
+        <div class="meta-item"><strong>0</strong><span>HARDWARE OUTPUTS</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 350 410"><defs><radialGradient id="bgfade"><stop offset="0" stop-color="#8cffd2" stop-opacity=".22"/><stop offset="1" stop-color="#8cffd2" stop-opacity="0"/></radialGradient></defs>
+        <circle cx="185" cy="200" r="190" fill="url(#bgfade)"/><g stroke="#77b5c1" opacity=".38" fill="none"><circle cx="184" cy="198" r="132" stroke-dasharray="2 9"/><circle cx="184" cy="198" r="172" stroke-dasharray="1 15"/><path d="M55 198H320 M184 25V385" stroke-dasharray="3 12"/></g><g stroke="#baf2db" fill="none" stroke-width="2"><path d="M159 100L208 100 227 133 222 222 211 228 211 315 236 368 215 380 177 311 176 244 164 244 160 311 138 380 115 368 140 315 140 227 130 222 128 133Z"/><path d="M128 137L106 153 104 223 90 275 105 286 121 232 137 183 M227 137L248 153 252 223 268 275 252 286 236 232 220 183"/><rect x="154" y="53" width="55" height="47" rx="18"/><path d="M161 80H202"/><circle cx="135" cy="152" r="5"/><circle cx="221" cy="152" r="5"/><circle cx="115" cy="223" r="5"/><circle cx="243" cy="223" r="5"/><circle cx="160" cy="245" r="5"/><circle cx="196" cy="245" r="5"/></g><text x="184" y="192" fill="#cfff9d" font-size="19" font-family="monospace" text-anchor="middle">EFMW</text></svg>
+      </div>
+    </section>
+
+    <section class="safety-strip" aria-label="Research status notice">
+      <div class="safety-icon" aria-hidden="true">!</div>
+      <div><strong>SIMULATION-ONLY RESEARCH PROTOTYPE</strong><p>This is a procedural 3D kinematic model with illustrative sensor, support, and fault proxies. It is <b>not</b> a physics-validated full-body dynamics solver, hardware robot, safety certification, or demonstrated EFMW control advantage.</p></div>
+      <span>PHYSICAL MOTION <b>LOCKED</b></span>
+    </section>
+
+    <section id="testbed" class="lab-section" aria-labelledby="lab-heading">
+      <div class="section-label"><span>01 / LIVE IN BROWSER</span><a href="./docs/TESTBED.md">MODEL LIMITATIONS ↗</a></div>
+      <div class="section-title"><h2 id="lab-heading">Humanoid testbed <em>001.</em></h2><p>Explore the body. Drive motions. Inject faults. Observe the monitor. Reproducible simulated telemetry, not hardware evidence.</p></div>
+
+      <div class="testbed-grid">
+        <aside class="panel controls-panel" aria-label="Simulation controls">
+          <div class="panel-heading"><span>CONTROL DESK</span><span class="panel-id">CTL / 001</span></div>
+          <div class="control-section">
+            <span class="group-heading">ENGINE</span>
+            <div class="runtime-control">
+              <button id="runButton" class="btn btn-primary" type="button">▶ RUN</button>
+              <button id="stepButton" class="icon-button" type="button" aria-label="Advance one simulation step" title="One 60-Hz step">⏭</button>
+              <button id="resetButton" class="icon-button" type="button" aria-label="Reset simulation" title="Reset all state">↺</button>
+            </div>
+            <div class="runtime-stats"><span>TIME <strong id="simTime">00:00.00</strong></span><span>SEED <strong id="seedValue">23</strong></span></div>
+          </div>
+          <div class="control-section">
+            <span class="group-heading">MOTION PROGRAM</span>
+            <div class="scenario-grid" id="scenarioButtons" role="group" aria-label="Motion scenario"></div>
+          </div>
+          <div class="control-section">
+            <div class="range-heading"><label for="amplitudeRange">Motion amplitude</label><output id="amplitudeValue">65%</output></div>
+            <input type="range" id="amplitudeRange" min="0" max="125" step="5" value="65"/>
+            <div class="range-heading"><label for="speedRange">Pattern speed</label><output id="speedValue">1.00×</output></div>
+            <input type="range" id="speedRange" min="20" max="250" step="5" value="100"/>
+          </div>
+          <div class="control-section">
+            <span class="group-heading">FAULT INJECTION</span>
+            <label class="field-label" for="faultSelect">Synthetic disturbance</label>
+            <select id="faultSelect" aria-describedby="faultHelp"></select>
+            <p class="mini-note" id="faultHelp">Affects only locally synthesized telemetry and rate-limited joints.</p>
+          </div>
+          <div class="control-section">
+            <span class="group-heading">JOINT INSPECTOR</span>
+            <label class="field-label" for="jointGroup">Subassembly</label>
+            <select id="jointGroup"></select>
+            <label class="field-label" for="jointSelect">Joint</label>
+            <select id="jointSelect"></select>
+            <div class="range-heading"><label for="jointRange">Target angle</label><output id="jointValue">0°</output></div>
+            <input id="jointRange" type="range" min="-100" max="100" step="1" value="0"/>
+            <p class="mini-note" id="jointHelp">Pick a luminous joint in the 3D view, or choose it here. Moving the slider switches to Manual mode.</p>
+            <div class="joint-readout">CURRENT <strong id="jointCurrent">0.0°</strong> <span id="jointLimits">—</span></div>
+          </div>
+          <div class="control-section muted"><span class="group-heading">ACTUATOR AUTHORITY</span>
+            <div class="locked"><span aria-hidden="true">⛨</span> NO HARDWARE INTERFACE</div>
+            <p class="mini-note">No ROS topics, PWM, CAN, EtherCAT, firmware, motor messages, or physical motion permits.</p>
+          </div>
+        </aside>
+
+        <div class="viewport-panel" aria-label="3D articulated robot viewport">
+          <div class="viewport-toolbar">
+            <div><span class="viewport-dot"></span><strong>3D / ARTICULATED BODY</strong><small>SIM-ONLY · RENDERED MODEL</small></div>
+            <div class="camera-controls" role="group" aria-label="Camera preset"><button type="button" data-camera="iso" class="selected">ISO</button><button type="button" data-camera="front">FRONT</button><button type="button" data-camera="side">SIDE</button><button type="button" data-camera="top">TOP</button></div>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="robotCanvas" role="img" aria-label="Interactive 3D model of a 32-joint humanoid robot with orbit controls and clickable joints"></canvas>
+            <div id="renderError" class="render-error" hidden>3D visualization unavailable. The text-based simulator controls and research documents remain accessible. Check WebGL and access to the pinned Three.js CDN.</div>
+            <div class="viewport-hud">
+              <span>BODY ID <strong>EHP-H32-01</strong></span>
+              <span>WORLD <strong>SIMULATION</strong></span>
+            </div>
+            <div class="viewport-corner"><span class="scan-label">REFERENCE MODEL</span><strong id="modelStatus">32/32 JOINTS</strong><small>PROCEDURAL · NO CALIBRATED CAD</small></div>
+            <div class="viewport-footer"><span><i class="legend-dot joint-dot"></i> JOINTS</span><span><i class="legend-dot com-dot"></i> CoM PROXY</span><span><i class="legend-dot base-dot"></i> SUPPORT PROXY</span><small>DRAG TO ORBIT · SCROLL TO ZOOM · CLICK A JOINT</small></div>
+          </div>
+          <div class="viewport-bottom"><div><span class="left-led"></span> MOTION STATE <b id="scenarioStatus">STANDBY</b></div><div id="selectedJointStatus">right_elbow_pitch</div><div id="runIndicator">PAUSED</div></div>
+        </div>
+
+        <aside class="panel telemetry-panel" aria-label="Simulated telemetry and monitoring">
+          <div class="panel-heading"><span>TELEMETRY</span><span class="panel-id">EVIDENCE / 001</span></div>
+          <div class="telemetry-primary">
+            <span class="group-heading">EFMW-INSPIRED COHERENCE</span>
+            <div class="value-line"><strong id="coherenceValue">0.500</strong><span id="coherenceStatus" class="status-chip">UNRESOLVED</span></div>
+            <div class="meter"><div class="meter-fill" id="coherenceBar" style="width:50%"></div></div>
+            <p class="mini-note">EWMA/history heuristic. Advisory only; no physical-field claim.</p>
+          </div>
+          <div class="telemetry-two">
+            <div><span>INNOVATION</span><strong id="innovationValue">0.000</strong></div>
+            <div><span>TRACKING ERROR</span><strong id="trackingValue">—</strong></div>
+            <div><span>SUPPORT MARGIN*</span><strong id="balanceValue">0.140 m</strong></div>
+            <div><span>CONTACT PROXY</span><strong id="contactValue">100%</strong></div>
+          </div>
+          <div class="control-section">
+            <div class="chart-heading"><span class="group-heading">COHERENCE HISTORY</span><span>SIMULATED / 60 Hz</span></div>
+            <svg id="coherenceChart" class="spark" viewBox="0 0 310 118" preserveAspectRatio="none" role="img" aria-label="History plot of EFMW-style coherence and conventional alert threshold">
+              <rect width="310" height="118" fill="transparent"/><path d="M0 59H310 M0 94H310 M0 22H310" stroke="#2c4953" stroke-dasharray="3 6" stroke-width="1"/><path d="M0 71H310" stroke="#f3a4a4" stroke-dasharray="5 5" opacity=".45"/><path id="historyArea" d="" fill="#94e9bf" fill-opacity=".08"/><path id="historyPath" d="M0 60H310" stroke="#c5f591" fill="none" stroke-width="2.2"/></svg>
+            <div class="chart-legend"><span>— COHERENCE</span><span>– – HOLD THRESHOLD</span></div>
+          </div>
+          <div class="control-section">
+            <div class="chart-heading"><span class="group-heading">MONITOR COMPARISON</span><span>NO INDEPENDENT VALIDATION</span></div>
+            <div class="monitor-row"><span>INSTANT THRESHOLD</span><strong id="baselineStatus">NO ALARM</strong></div>
+            <div class="monitor-row"><span>HISTORY / COHERENCE</span><strong id="efmwStatus">UNRESOLVED</strong></div>
+            <p class="mini-note" id="monitorReason">Run the simulator to generate model-only observations.</p>
+          </div>
+          <div class="control-section">
+            <span class="group-heading">NORMALIZED SENSOR PROXIES</span>
+            <div id="sensorReadouts"></div>
+          </div>
+          <div class="panel-end"><span class="status-square"></span><span>ALL VALUES SYNTHETIC / NO TELEMETRY FROM A PHYSICAL ROBOT</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="assembly" class="secondary-section" aria-labelledby="assemblyHeading">
+      <div class="section-label"><span>02 / RECURSIVE ENGINEERING</span><a href="./research/config/assembly_graph.json">VIEW FROZEN STAGE GRAPH ↗</a></div>
+      <div class="section-title"><h2 id="assemblyHeading">Build, test, <em>earn the next step.</em></h2><p>Source-preserved A0–A8 dependencies. The planner can preview a proposal and retain a simulated review trace; real authorizations remain absent.</p></div>
+      <div class="assembly-layout">
+        <div class="assembly-left">
+          <div class="section-note"><b>HUMAN GATE / HARD BLOCK</b><p>A mock preview cannot mark any physical assembly requirement complete, nor produce a safety sign-off. All original stages remain UNRESOLVED until externally approved evidence exists.</p></div>
+          <div class="assembly-cards" id="assemblyStages"></div>
+        </div>
+        <aside class="assembly-right">
+          <div class="panel-heading"><span>RECURSIVE PLANNER</span><span class="panel-id">PREVIEW ONLY</span></div>
+          <span class="group-heading">NEXT ELIGIBLE STAGE</span>
+          <h3 id="stageProposal">Loading source DAG…</h3>
+          <p id="stageEvidence" class="mini-note">Source evidence obligations will appear here.</p>
+          <button id="stageBtn" class="btn btn-primary" type="button" disabled>RECORD MOCK PREVIEW ↗</button>
+          <div class="stage-status"><span>REAL BUILD AUTHORIZATIONS</span><strong>0 / 9</strong></div>
+          <div id="stageEventLog" class="stage-log" aria-live="polite">No preview events recorded.</div>
+          <button id="stageResetBtn" class="text-button" type="button">↺ RESET PREVIEW LEDGER</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="research" class="secondary-section" aria-labelledby="researchHeading">
+      <div class="section-label"><span>03 / THE SCIENTIFIC CONTRACT</span><span>METHOD BEFORE METAPHYSICS</span></div>
+      <div class="section-title"><h2 id="researchHeading">What the testbed <em>can actually tell us.</em></h2><p>The browser application demonstrates test infrastructure and kinematic behaviors. Evidence of physical advantage would require entirely different, independently reviewed experiments.</p></div>
+      <div class="research-grid">
+        <article><span class="research-index">01 / ESTABLISHED</span><h3>Conventional robotics first</h3><p>Joint kinematics, limits, speed constraints, deterministic state updates, classical baseline comparisons and simulation-only configuration checks.</p><span class="status-line"><i></i> IMPLEMENTED AS PROTOTYPE</span></article>
+        <article><span class="research-index">02 / EXPERIMENTAL</span><h3>Memory and coherence</h3><p>An explicit, read-only model remembers normalized sensor history and produces anomaly/hold recommendations for comparison with instant rules.</p><span class="status-line"><i></i> DEMO ALGORITHM, UNVALIDATED</span></article>
+        <article><span class="research-index">03 / GOVERNED</span><h3>Recursive assembly</h3><p>Requirements, dependencies, proposed stages, approvals and evidence are kept separate. Simulation previews cannot sign off real hazards.</p><span class="status-line"><i></i> PREVIEW, NO PHYSICAL PERMITS</span></article>
+        <article><span class="research-index">04 / OPEN QUESTION</span><h3>Does EFMW add value?</h3><p>Matched sensor information, frozen holdouts, realistic faults, strong classical baselines, error analysis and independent replication are still required.</p><span class="status-line unresolved"><i></i> UNRESOLVED</span></article>
+      </div>
+    </section>
+
+    <section id="specification" class="secondary-section spec-section" aria-labelledby="specHeading">
+      <div class="section-label"><span>04 / ORIGINAL SOURCE CORPUS</span><span>READ · REPLAY · REFUTE</span></div>
+      <div class="section-title"><h2 id="specHeading">Nothing behind <em>the glass.</em></h2><p>The full specification and original reference implementation are published alongside the simulation interface. Their scope has not been upgraded.</p></div>
+      <div class="spec-grid">
+        <a class="document-card primary-doc" href="./SPEC.md"><span>ENGINEERING DOCUMENT / EHP-SYS-001</span><strong>Complete Platform Specification v0.1</strong><p>Body architecture · 32-DoF allocation · mechanical/electrical controls · software and safety boundaries · staged assembly · acceptance gates.</p><b>OPEN FULL DOCUMENT ↗</b></a>
+        <a class="document-card" href="./research/config/requirements.json"><span>CONTROLLED CONFIGURATION</span><strong>Requirements registry</strong><p>Testable requirements, evidence obligations, constraints and review statuses.</p><b>OPEN REGISTRY ↗</b></a>
+        <a class="document-card" href="./research/config/hazards.json"><span>SAFETY &amp; RISK</span><strong>Hazard ledger</strong><p>Preliminary risk analysis and explicitly blocked physical milestones.</p><b>OPEN HAZARDS ↗</b></a>
+        <a class="document-card" href="./research/README.md"><span>REPLAY PACKAGE</span><strong>Original Python prototype</strong><p>Conventional 2-link dynamics, simulation supervisor and 35 historical local reference tests.</p><b>EXPLORE SOURCES ↗</b></a>
+        <a class="document-card" href="./docs/TESTBED.md"><span>BROWSER EVIDENCE</span><strong>3D testbed methodology</strong><p>Proxies, algorithm contracts, predetermined scenarios, limitations and how to reproduce test results.</p><b>READ METHOD ↗</b></a>
+        <a class="document-card" href="https://github.com/enuminous/papers/tree/main/research/efmw-humanoid-platform-v0.1" target="_blank" rel="noopener noreferrer"><span>PRIOR PUBLICATION</span><strong>Published papers archive</strong><p>Source-of-record artifacts and previous engineering documentation.</p><b>OPEN RESEARCH ARCHIVE ↗</b></a>
+      </div>
+      <div class="source-links"><a href="./research/docs/SOURCES.md">SOURCES &amp; STANDARDS ↗</a><a href="./research/docs/TRACEABILITY.md">REQUIREMENT TRACEABILITY ↗</a><a href="./research/docs/LOCAL_EXECUTION_RECORD.md">LOCAL EXECUTION RECORD ↗</a><a href="./research/MANIFEST.sha256">SOURCE MANIFEST ↗</a></div>
+    </section>
+  </main>
+  <footer class="footer"><div><strong>EFMW HUMANOID / MONOLITHIC LLC</strong><p>Proposed engineering research platform · 11 November 2026</p></div><div><p>THE SYSTEM CAN REMEMBER A MISTAKE.<br>IT CANNOT GIVE ITSELF PERMISSION TO REPEAT ONE DANGEROUSLY.</p><span>SIMULATION ≠ QUALIFIED HARDWARE</span></div><div><a href="./SPEC.md">FULL SPEC ↗</a><a href="https://github.com/enuminous/EFMW-Humanoid">SOURCE REPO ↗</a><a href="https://github.com/enuminous/EFMW-Field">EFMW MASTER LAB ↗</a></div></footer>
+</div>
+<noscript><div class="noscript">This simulator requires JavaScript. The full specification and research source files remain accessible through the links above.</div></noscript>
+<script type="module" src="./assets/app.mjs"></script>
+</body>
+</html>
